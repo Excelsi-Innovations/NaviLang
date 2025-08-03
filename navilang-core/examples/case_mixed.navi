@@ -1,0 +1,30 @@
+context "User Authentication" {
+    var User:entity
+    var Session:object  
+    var AuthService:service
+    
+    User does Login
+    User calls AuthService
+    AuthService returns Session
+    Session goes to UserDashboard
+    
+    if User is "invalid" then
+        User goes to LoginPage
+}
+
+Context "Order Processing" {
+    Var Order:Entity
+    VAR PaymentService:SERVICE
+    var InventoryService:Service
+    
+    Order created by User
+    order CALLS PaymentService
+    PaymentService RECEIVES "payment_data"
+    
+    PARALLEL {
+        InventoryService Does UpdateStock
+        PaymentService does ProcessPayment
+    }
+    
+    Order Goes TO Fulfillment
+}

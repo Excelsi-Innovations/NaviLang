@@ -1,0 +1,30 @@
+CONTEXT "User Authentication" {
+    VAR User:Entity
+    VAR Session:Object  
+    VAR AuthService:Service
+    
+    User DOES Login
+    User CALLS AuthService
+    AuthService RETURNS Session
+    Session GOES TO UserDashboard
+    
+    IF User IS "invalid" THEN
+        User GOES TO LoginPage
+}
+
+CONTEXT "Order Processing" {
+    VAR Order:Entity
+    VAR PaymentService:Service
+    VAR InventoryService:Service
+    
+    Order CREATED BY User
+    Order CALLS PaymentService
+    PaymentService RECEIVES "payment_data"
+    
+    PARALLEL {
+        InventoryService DOES UpdateStock
+        PaymentService DOES ProcessPayment
+    }
+    
+    Order GOES TO Fulfillment
+}
