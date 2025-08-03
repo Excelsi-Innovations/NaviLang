@@ -20,3 +20,31 @@ Thumbs.db
 documentation/output/
 # Ignore coverage reports
 coverage/
+
+# Rust specific
+target/
+Cargo.lock
+*.pdb
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Rust toolchain
+.cargo/
+
+# IDE files for Rust
+rust-project.json
+.vs/
+
+# Benchmark outputs
+benches/target/
+criterion/
+
+# Test outputs
+tests/snapshots/
+tests/output/
+
+# Generated documentation
+docs/book/
+docs/target/
