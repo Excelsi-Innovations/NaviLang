@@ -1,0 +1,22 @@
+.obsidian/
+.git/
+.vscode/
+node_modules/
+dist/
+# Ignore build artifacts
+build/
+# Ignore logs
+logs/
+# Ignore temporary files
+*.tmp
+# Ignore environment files
+.env
+# Ignore IDE specific files
+.idea/
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
+# Ignore documentation output
+documentation/output/
+# Ignore coverage reports
+coverage/
